@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.iceka.whatsappclonekotlin.ui.auth.AuthViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.auth.PhoneVerifyFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_phone_verify"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintBottom_toTopOf="@id/tv_wating_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_title_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:textColor="#00897b"
+                tools:text="Verify +6281234567890" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/tv_wating_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@id/et_verification_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_phone_verify"
+            tools:text="Waiting to automatically detect an SMS sent to +6285814993643. Wrong number?" />
+
+        <EditText
+            android:id="@+id/et_verification_code"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#00887A"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:labelFor="@id/et_verification_code"
+            android:text="@{viewModel.otpCode}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_wating_text"
+            tools:text="920193" />
+
+        <TextView
+            android:id="@+id/tv_enter_verification_code_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_6_digit_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_verification_code" />
+
+        <TextView
+            android:id="@+id/tv_resend_sms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_baseline_chat_24"
+            android:drawablePadding="10dp"
+            android:text="@string/resend_sms"
+            android:textColor="#26A69A"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_enter_verification_code_label" />
+
+        <TextView
+            android:id="@+id/tv_countdown_sms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_resend_sms"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="1:03" />
+
+        <View
+            android:id="@+id/line_separator"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="#E2E2E2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_resend_sms" />
+
+        <TextView
+            android:id="@+id/tv_call_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_baseline_add_ic_call_24"
+            android:drawablePadding="10dp"
+            android:text="@string/call_me"
+            android:textColor="#26A69A"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line_separator" />
+
+        <TextView
+            android:id="@+id/tv_countdown_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_call_me"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="1:03" />
+
+        <Button
+            android:id="@+id/bt_next"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginBottom="16dp"
+            android:background="#25d366"
+            android:text="@string/next"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

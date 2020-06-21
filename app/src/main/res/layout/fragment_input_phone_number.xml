@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.iceka.whatsappclonekotlin.ui.auth.AuthViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.auth.InputPhoneNumberActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/enter_your_phone_number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:textColor="#00897b" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/ask_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text="@string/ask_phone_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_country_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ask_phone_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_country_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00887A"
+                android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:text="@{viewModel.countryName}"
+                tools:text="Indonesia" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/et_country_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:autofillHints="Country code"
+            android:backgroundTint="#00887A"
+            android:drawableStart="@drawable/ic_baseline_add_24"
+            android:gravity="center"
+            android:inputType="phone"
+            android:labelFor="@id/et_country_code"
+            android:text="@{viewModel.countryDialCode}"
+            app:layout_constraintEnd_toStartOf="@id/et_phone_number"
+            app:layout_constraintHorizontal_weight=".3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_country_name"
+            tools:text="62" />
+
+        <EditText
+            android:id="@+id/et_phone_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:autofillHints="Phone number"
+            android:backgroundTint="#00887A"
+            android:hint="@string/phone_number"
+            android:inputType="phone"
+            android:text="@={viewModel.phoneNumber}"
+            app:layout_constraintBaseline_toBaselineOf="@id/et_country_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight=".7"
+            app:layout_constraintStart_toEndOf="@id/et_country_code" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/carrier_sms_charges_may_apply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_country_code" />
+
+        <Button
+            android:id="@+id/bt_next_to_verify"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginBottom="16dp"
+            android:background="#25d366"
+            android:text="@string/next"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

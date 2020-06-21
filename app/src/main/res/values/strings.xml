@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">WhatsApp Clone Kotlin</string>
+    <string name="welcome_to_whatsapp">Welcome to WhatsApp</string>
+    <string name="welcome_logo_image">Welcome Logo Image</string>
+    <string name="term_of_service">Read our <font color="#0FA7F2">Privacy Policy </font>. Tap \"Agree and continue\" to accept the <font color="#0FA7F2">Terms of Service</font>.</string>
+    <string name="agree_and_continue">agree and continue</string>
+    <string name="from">from</string>
+    <string name="ceka">C E K A</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="ask_phone_number">WhatsApp will send an SMS message to verify your phone number. <font color="#0FA7F2">What\'s my number?</font></string>
+    <string name="phone_number">phone number</string>
+    <string name="carrier_sms_charges_may_apply">Carrier SMS charges may apply</string>
+    <string name="next">next</string>
+    <string name="connecting_message">Connecting</string>
+    <string name="enter_6_digit_code">Enter 6-digit code</string>
+    <string name="resend_sms">Resend SMS</string>
+    <string name="call_me">Call me</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_info">Profile info</string>
+    <string name="please_provide_your_name_and_an_optional_profile_photourl">Please provide your name and an optional profile photoUrl</string>
+    <string name="input_username">Input Username</string>
+    <string name="phone_number_too_short">The phone number you entered is too short for the country: %s \n\nInclude your area code if you haven\'t.</string>
+    <string name="phon_number_verifying">We will be verifying the phone number:\n\n %s \n\nIs this OK, or would you like to edit the number?</string>
+
+</resources>

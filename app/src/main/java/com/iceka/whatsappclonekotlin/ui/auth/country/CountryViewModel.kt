@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.ktx.toObjects
 import com.iceka.whatsappclonekotlin.data.model.CountryCallingCodes
-import com.iceka.whatsappclonekotlin.data.repository.UtilRepository
+import com.iceka.whatsappclonekotlin.data.repositories.UtilRepository
 import com.iceka.whatsappclonekotlin.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -5,9 +5,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.iceka.whatsappclonekotlin.R
 import com.iceka.whatsappclonekotlin.data.model.CountryCallingCodes
+import com.iceka.whatsappclonekotlin.data.model.User
+import com.iceka.whatsappclonekotlin.ui.home.contact.ContactAdapter
 
 @BindingAdapter("format_flag")
 fun TextView.formatFlag(item: CountryCallingCodes) {
@@ -22,16 +25,21 @@ fun TextView.formatFlag(item: CountryCallingCodes) {
     }
 }
 
-@BindingAdapter("local_name")
-fun TextView.checkLocalName(item: CountryCallingCodes) {
-    item.let {
-//        visibility = if (item.local != null) {
-//            View.VISIBLE
-//        } else {
-//            View.GONE
-//        }
+//@BindingAdapter("listData")
+//fun RecyclerView.bindList(contactList: List<User>?) {
+//    val adapter = adapter as ContactAdapter
+//    adapter.submitList(contactListng
+//    )
+//}
+
+@BindingAdapter("bindAvatar")
+fun ImageView.bindAvatar(imageUrl: String) {
+    apply { Glide.with(context)
+        .load(imageUrl)
+        .into(this)
     }
 }
+
 
 @BindingAdapter("bindAvatarInit")
 fun ImageView.bindAvatar(uri: Uri?) {

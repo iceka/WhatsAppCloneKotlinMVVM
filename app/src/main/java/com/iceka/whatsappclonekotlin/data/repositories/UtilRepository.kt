@@ -1,4 +1,4 @@
-package com.iceka.whatsappclonekotlin.data.repository
+package com.iceka.whatsappclonekotlin.data.repositories
 
 import com.google.firebase.firestore.QuerySnapshot
 import com.iceka.whatsappclonekotlin.data.firebase.FirebaseSourceUtil

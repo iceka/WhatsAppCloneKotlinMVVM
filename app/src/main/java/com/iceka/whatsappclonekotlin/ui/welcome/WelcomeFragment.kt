@@ -1,6 +1,9 @@
 package com.iceka.whatsappclonekotlin.ui.welcome
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.iceka.whatsappclonekotlin.databinding.FragmentWelcomeBinding
+import com.iceka.whatsappclonekotlin.ui.HomeActivity
 import com.iceka.whatsappclonekotlin.ui.auth.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,9 +32,17 @@ class WelcomeFragment : Fragment() {
 
         viewModel.getCountryCodes()
 
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        val isRegistered = sharedPref?.getBoolean("isRegistered", false)
+
         viewModel.isAuthenticate.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToInitUserProfileFragment())
+                if (isRegistered == true) {
+                    startActivity(Intent(context, HomeActivity::class.java))
+                    activity?.finish()
+                } else {
+                    findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToInitUserProfileFragment())
+                }
             }
         })
 

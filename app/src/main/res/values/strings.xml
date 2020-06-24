@@ -21,5 +21,8 @@
     <string name="input_username">Input Username</string>
     <string name="phone_number_too_short">The phone number you entered is too short for the country: %s \n\nInclude your area code if you haven\'t.</string>
     <string name="phon_number_verifying">We will be verifying the phone number:\n\n %s \n\nIs this OK, or would you like to edit the number?</string>
+    <string name="start_a_chat">Start a chat</string>
+    <string name="select_contact">Select contact</string>
+    <string name="type_a_message">Type a Message</string>
 
 </resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".9" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="start"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:gravity="start"
+                android:background="@drawable/bubble_chat_incoming"
+                tools:ignore="UselessParent">
+
+                <view
+                    android:id="@+id/msg_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:gravity="end|center_vertical"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="2dp"
+                    class="com.iceka.whatsappclonekotlin.utils.CustomChatLayout"
+                    app:viewPartMain="@+id/chat_msg"
+                    app:viewPartSlave="@+id/date_view">
+
+                    <TextView
+                        android:id="@+id/chat_msg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="start|top"
+                        android:paddingBottom="4dp"
+                        tools:text="Lorem Ipsum is simply dummy text " />
+
+
+                    <TextView
+                        android:id="@+id/date_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|bottom"
+                        android:gravity="end|top"
+                        android:maxLines="1"
+                        android:minWidth="60dp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="2dp"
+                        tools:text="09:00 PM" />
+
+
+                </view>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

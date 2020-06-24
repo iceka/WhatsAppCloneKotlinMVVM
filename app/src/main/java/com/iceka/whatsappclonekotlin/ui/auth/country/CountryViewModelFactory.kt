@@ -2,7 +2,7 @@ package com.iceka.whatsappclonekotlin.ui.auth.country
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.iceka.whatsappclonekotlin.data.repository.UtilRepository
+import com.iceka.whatsappclonekotlin.data.repositories.UtilRepository
 
 @Suppress("UNCHECKED_CAST")
 class CountryViewModelFactory(private val utilRepository: UtilRepository): ViewModelProvider.NewInstanceFactory() {

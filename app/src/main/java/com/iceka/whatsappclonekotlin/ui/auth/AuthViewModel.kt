@@ -3,6 +3,7 @@ package com.iceka.whatsappclonekotlin.ui.auth
 import android.app.Application
 import android.content.Context
 import android.telephony.TelephonyManager
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,8 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.iceka.whatsappclonekotlin.data.model.CountryCallingCodes
-import com.iceka.whatsappclonekotlin.data.repository.UserRepository
-import com.iceka.whatsappclonekotlin.data.repository.UtilRepository
+import com.iceka.whatsappclonekotlin.data.repositories.UserRepository
+import com.iceka.whatsappclonekotlin.data.repositories.UtilRepository
 import com.iceka.whatsappclonekotlin.utils.Event
 import com.iceka.whatsappclonekotlin.utils.Resource
 import com.iceka.whatsappclonekotlin.utils.formatDialCode
@@ -47,6 +48,10 @@ class AuthViewModel @ViewModelInject constructor(
     val isAuthenticate: LiveData<Boolean>
         get() = _isAuthenticate
 
+    private val _isRegistered = MutableLiveData<Boolean>()
+    val isRegistered: LiveData<Boolean>
+        get() = _isRegistered
+
     private val _numberIsCorrect = MutableLiveData<Boolean>()
     val numberIsCorrect = _numberIsCorrect
 
@@ -64,14 +69,12 @@ class AuthViewModel @ViewModelInject constructor(
 
     var number = MutableLiveData<String>()
 
+    init {
+        Log.i("MYTAG", "auth gak ${firebaseAuth.currentUser}")
+    }
 
     fun checkAuth() {
         _isAuthenticate.value = firebaseAuth.currentUser != null
-    }
-
-    fun logout() {
-        firebaseAuth.signOut()
-        _isAuthenticate.value = false
     }
 
     private fun getDefaultTelephonyManager(): String {
@@ -186,4 +189,17 @@ class AuthViewModel @ViewModelInject constructor(
         _navigateToInitProfile.value = Event(true)
     }
 
+    fun userIsRegistered() {
+        _isRegistered.value = true
+    }
+
+    fun userNotRegistered() {
+        _isRegistered.value = false
+    }
+
+    fun checkUserIfRegistered() {
+        if(_isRegistered.value == true) {
+
+        }
+    }
 }

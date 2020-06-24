@@ -1,6 +1,7 @@
 package com.iceka.whatsappclonekotlin.di
 
 import android.app.Application
+import com.iceka.whatsappclonekotlin.data.firebase.FirebaseSourceChat
 import com.iceka.whatsappclonekotlin.data.firebase.FirebaseSourceUser
 import com.iceka.whatsappclonekotlin.data.firebase.FirebaseSourceUtil
 import dagger.Module
@@ -21,6 +22,10 @@ class AppModule {
     @Singleton
     @Provides
     fun provideFirebaseSourceUtil() = FirebaseSourceUtil()
+
+    @Singleton
+    @Provides
+    fun provideFirebaseSourceChat() = FirebaseSourceChat()
 
 }
 

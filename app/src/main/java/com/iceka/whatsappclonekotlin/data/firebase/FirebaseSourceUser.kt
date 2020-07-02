@@ -1,14 +1,12 @@
 package com.iceka.whatsappclonekotlin.data.firebase
 
 import android.net.Uri
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FieldPath
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -48,7 +46,7 @@ class FirebaseSourceUser {
             .await()
     }
 
-    suspend fun createUser(user: User, uid: String){
+    suspend fun createUser(user: User, uid: String) {
         db.collection("users")
             .document(uid)
             .set(user)
@@ -56,7 +54,7 @@ class FirebaseSourceUser {
     }
 
     suspend fun loadExistedUser(uid: String): QuerySnapshot {
-        return fire.collection("users")
+        return db.collection("users")
             .whereEqualTo(FieldPath.documentId(), uid)
             .limit(1)
             .get()
@@ -86,6 +84,21 @@ class FirebaseSourceUser {
             .get()
             .await()
     }
+
+    fun getUserByChatWithId(chatWithId: String): DocumentReference {
+        return db.collection("users")
+            .document(chatWithId)
+
+
+    }
+
+    suspend fun getUserTest(chatWithId: String): DocumentSnapshot {
+        return db.collection("users")
+            .document(chatWithId)
+            .get()
+            .await()
+    }
+
 
 }
 

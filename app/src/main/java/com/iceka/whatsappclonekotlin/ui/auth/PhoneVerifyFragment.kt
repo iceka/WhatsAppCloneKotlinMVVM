@@ -1,11 +1,13 @@
 package com.iceka.whatsappclonekotlin.ui.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -17,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class PhoneVerifyFragment : Fragment() {
 
     private lateinit var binding: FragmentPhoneVerifyBinding
-    private val viewModel: AuthViewModel by viewModels()
+    private val viewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +36,10 @@ class PhoneVerifyFragment : Fragment() {
         viewModel.sendVerificationCode(arguments.phoneNumber)
 
         binding.btNext.setOnClickListener {
-            viewModel.verifyCode(binding.etVerificationCode.text.toString())
+            val cek = binding.etVerificationCode.text.toString()
+            Log.i("MYTAG", "di fragment $cek")
+
+            viewModel.verifyCode(cek)
         }
 
         viewModel.response.observe(viewLifecycleOwner, Observer { response ->

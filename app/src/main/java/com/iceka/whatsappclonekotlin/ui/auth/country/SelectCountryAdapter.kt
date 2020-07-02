@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.iceka.whatsappclonekotlin.R
 import com.iceka.whatsappclonekotlin.data.model.CountryCallingCodes
 import com.iceka.whatsappclonekotlin.databinding.ItemCountryCallingCodeBinding
+import com.iceka.whatsappclonekotlin.ui.home.chat.chatroom.ChatViewModel
 
 class SelectCountryAdapter(private val clickListener: CountryListener): ListAdapter<CountryCallingCodes, SelectCountryAdapter.MyViewHolder>(DiffCallback) {
 
@@ -26,7 +27,6 @@ class SelectCountryAdapter(private val clickListener: CountryListener): ListAdap
         ): Boolean {
             return oldItem == newItem
         }
-
     }
 
     inner class MyViewHolder(private val binding: ItemCountryCallingCodeBinding): RecyclerView.ViewHolder(binding.root) {

@@ -69,10 +69,6 @@ class AuthViewModel @ViewModelInject constructor(
 
     var number = MutableLiveData<String>()
 
-    init {
-        Log.i("MYTAG", "auth gak ${firebaseAuth.currentUser}")
-    }
-
     fun checkAuth() {
         _isAuthenticate.value = firebaseAuth.currentUser != null
     }
@@ -124,6 +120,7 @@ class AuthViewModel @ViewModelInject constructor(
     }
 
     fun sendVerificationCode(phoneNumber: String) {
+        Log.i("MYTAG", "sending verification code")
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             phoneNumber,
             60,
@@ -141,11 +138,13 @@ class AuthViewModel @ViewModelInject constructor(
         ) {
             super.onCodeSent(verificationId, token)
             verificationIds.value = verificationId
+            Log.i("MYTAG", "onCodeSent: VerificationIds ${verificationIds.value}")
             resendingToken = token
         }
 
         override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
             val code = phoneAuthCredential.smsCode
+            Log.i("MYTAG", "onVerificationCompleted: ${phoneAuthCredential.smsCode}")
             if (code != null) {
                 _otpCode.value = code
                 verifyCode(code)
@@ -153,6 +152,7 @@ class AuthViewModel @ViewModelInject constructor(
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
+            Log.i("MYTAG", "onVerificationFailed: ${e.message}")
             _response.postValue(Resource.Error(message = e.message))
         }
 
@@ -176,7 +176,6 @@ class AuthViewModel @ViewModelInject constructor(
                 withContext(Dispatchers.Main) {
                     navigateToInitUserProfile()
                 }
-
             } catch (e: Exception) {
                 e.printStackTrace()
                 _response.postValue(Resource.Error(message = e.message))

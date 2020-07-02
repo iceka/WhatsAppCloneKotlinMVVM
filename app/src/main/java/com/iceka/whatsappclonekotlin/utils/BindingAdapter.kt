@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.iceka.whatsappclonekotlin.R
+import com.iceka.whatsappclonekotlin.data.model.Conversation
 import com.iceka.whatsappclonekotlin.data.model.CountryCallingCodes
 import com.iceka.whatsappclonekotlin.data.model.User
 import com.iceka.whatsappclonekotlin.ui.home.contact.ContactAdapter
@@ -30,6 +31,22 @@ fun TextView.formatFlag(item: CountryCallingCodes) {
 //    val adapter = adapter as ContactAdapter
 //    adapter.submitList(contactListng
 //    )
+//}
+//
+//@BindingAdapter("testrv")
+//fun RecyclerView.bindTest(data: List<Conversation>, user: User) {
+//    for (i in data) {
+//        val cek = i.chatWithId
+//    }
+//
+//}
+
+//@BindingAdapter("contoh")
+//fun bindContoh(item: Conversation): String {
+////    for (i in data) {
+////       return i.
+////    }
+//    return  item.chatWithId
 //}
 
 @BindingAdapter("bindAvatar")

@@ -1,16 +1,24 @@
 package com.iceka.whatsappclonekotlin.ui.home.chat
 
+import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.iceka.whatsappclonekotlin.data.model.Conversation
+import com.iceka.whatsappclonekotlin.data.model.User
 import com.iceka.whatsappclonekotlin.databinding.ItemConversationBinding
 
-class ChatConversationAdapter(): ListAdapter<Conversation, ChatConversationAdapter.MyViewHolder>(DiffCallback) {
 
-    companion object DiffCallback : DiffUtil.ItemCallback<Conversation>() {
+class ChatConversationAdapter(private val listener: ConversationListener): ListAdapter<Conversation, ChatConversationAdapter.MyViewHolder>(DiffCallback) {
+
+    private val userList = ArrayList<User>()
+
+    companion object DiffCallback: DiffUtil.ItemCallback<Conversation>() {
+
         override fun areItemsTheSame(oldItem: Conversation, newItem: Conversation): Boolean {
             return oldItem.timestamp == newItem.timestamp
         }
@@ -20,8 +28,15 @@ class ChatConversationAdapter(): ListAdapter<Conversation, ChatConversationAdapt
         }
     }
 
+    fun setData(users: List<User>) {
+        userList.clear()
+        userList.addAll(users)
+    }
+
     inner class MyViewHolder(val binding: ItemConversationBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(conversation: Conversation) {
+        fun bind(conversation: Conversation, user: User, listener: ConversationListener) {
+            binding.clickListener = listener
+            binding.user = user
             binding.conversation = conversation
             binding.executePendingBindings()
         }
@@ -32,7 +47,18 @@ class ChatConversationAdapter(): ListAdapter<Conversation, ChatConversationAdapt
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val conversation = getItem(position)
-        holder.bind(conversation)
+        val user = userList[position]
+
+        holder.bind(conversation, user, listener)
+
     }
+
+
+    class ConversationListener(val clickListener: (conversation: Conversation) -> Unit) {
+        fun onClick(conversation: Conversation) = clickListener(conversation)
+    }
+
+
+
 
 }

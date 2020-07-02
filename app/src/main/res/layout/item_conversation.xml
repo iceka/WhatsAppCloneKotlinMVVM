@@ -7,6 +7,14 @@
         <variable
             name="conversation"
             type="com.iceka.whatsappclonekotlin.data.model.Conversation" />
+
+        <variable
+            name="user"
+            type="com.iceka.whatsappclonekotlin.data.model.User" />
+
+        <variable
+            name="clickListener"
+            type="com.iceka.whatsappclonekotlin.ui.home.chat.ChatConversationAdapter.ConversationListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,12 +22,14 @@
         android:layout_height="74dp"
         android:paddingStart="8dp"
         android:paddingTop="8dp"
-        android:paddingEnd="8dp">
+        android:paddingEnd="8dp"
+        android:onClick="@{() -> clickListener.onClick(conversation)}">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            bindAvatar="@{user.photoUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,6 +44,7 @@
             android:maxLines="1"
             android:textColor="@android:color/black"
             android:textSize="16sp"
+            android:text="@{user.username}"
             app:layout_constraintBottom_toTopOf="@id/tvConversation"
             app:layout_constraintEnd_toStartOf="@id/tvConversationTime"
             app:layout_constraintHorizontal_bias="0"
@@ -56,12 +67,14 @@
             android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{conversation.lastMessage}"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvUnreadCount"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toBottomOf="@id/tvUsername"
-            tools:text="This is a message from John Snow and Snow White from London" />
+            tools:text="This is a message from John Snow" />
 
         <TextView
             android:id="@+id/tvUnreadCount"
